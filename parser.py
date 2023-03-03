@@ -6,7 +6,7 @@ import json
 import ast
 
 
-def JSONfinder(array_string):
+def dictFinder(array_string):
     outputList = []
 
     inJSON = False
@@ -29,27 +29,24 @@ df = pd.read_csv('credits.csv')
 for i in range (1000):
     castCompletelyString = df.loc[i].loc["cast"]
 
-    print(castCompletelyString)
-
-    print(i)
 
     #print(castCompletelyString)
 
-    castListOfStrings = JSONfinder(castCompletelyString)
+    castListOfStrings = dictFinder(castCompletelyString)
 
     #print(castListOfStrings)
 
     vesCast = []
     for person in castListOfStrings:
-        person = person.replace("'", "\"")
-        #print(person)
-        #print(vesCast)
-        try:
-            vesCast.append(json.loads(person))
-        except:
-            print(person)
+        personDict = ast.literal_eval(person)
+        vesCast.append(personDict)
+    
 
+    try:
+        TomHanks = vesCast[0]
+    except:
+        a = 0
+    print(TomHanks)
+    print(type(TomHanks))
+        
 
-
-# TomHanks = vesCast[0]
-# print(TomHanks)
