@@ -57,6 +57,7 @@ for i in range (df.shape[0]):
 # axis=1 pa naredi, da se brise stolpce
 df.drop(["crew", "cast"], axis=1, inplace=True)
 
+df.rename(columns = {'id':'tmdbId'}, inplace = True)
     
 
 df.to_csv("genderParsed.csv", index=False)
