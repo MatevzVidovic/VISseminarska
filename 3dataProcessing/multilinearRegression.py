@@ -8,6 +8,14 @@ import numpy as np
 dfAllData = pd.read_csv('BechdelDataPrepared.csv')
 
 
+
+
+
+
+
+
+
+
 # fig, ax = plt.subplots()
 # ax.plot([1, 2, 3, 4], [1, 4, 2, 3]) 
 # plt.show()
@@ -34,11 +42,19 @@ xseq = np.linspace(0, 100, num=100)
 # Plot regression line
 ax.plot(xseq, a + b * xseq, color="k", lw=2.5)
 
-
-
 plt.show()
 
- 
+
+
+
+
+
+
+
+
+
+
+dfAllData.shape[1]
 
  
 

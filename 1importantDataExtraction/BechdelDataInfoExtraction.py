@@ -25,6 +25,13 @@ dfAllData.insert(3, "bechdelRevenueRatio", addingColumn, True)
 dfAllData.insert(4, "revenue_x", addingColumn, True)
 dfAllData.insert(5, "revenue_y", addingColumn, True)
 
+dfAllData.insert(6, "nowomen", addingColumn, True)
+dfAllData.insert(7, "notalk", addingColumn, True)
+dfAllData.insert(8, "men", addingColumn, True)
+dfAllData.insert(9, "dubious", addingColumn, True)
+dfAllData.insert(10, "ok", addingColumn, True)
+
+
 
 # What can be done on a single row:
 
@@ -62,6 +69,29 @@ for i in range (dfAllData.shape[0]):
     dfAllData.loc[i, "revenue_y"] = revenue
 
 
+    # Binary bechdel test:
+    binaryBechdel = dfAllData.loc[i, "binary"]
+    dfAllData.loc[i, "binary"] = 1 if binaryBechdel == "PASS" else (0 if "FAIL" else print("Binary bechdel, wrong value."))
+
+
+
+    # Clean bechdel test:
+
+    dfAllData.loc[i, "nowomen"] = 0
+    dfAllData.loc[i, "notalk"] = 0
+    dfAllData.loc[i, "men"] = 0
+    dfAllData.loc[i, "dubious"] = 0
+    dfAllData.loc[i, "ok"] = 0
+    
+    clean_bechdel_string = dfAllData.loc[i, "clean_test"]
+    dfAllData.loc[i, clean_bechdel_string] = 1
+
+
+
+
+
+
+
     
     # To pride pac isto, kot Bechdel:
 
@@ -82,7 +112,7 @@ print(dfAllData.columns)
 # Popularity ne vem kako je izracunan, zato ne includeam.
 # Includeam pa runtime, ker me zanima, kaksen je njegov vpliv.
 # Budget je pomemben dejavnik za RevenueRatio in morda celo za vote_average, zato ju includeam.
-dfNewData = dfAllData[["castFemalePercentage", "crewFemalePercentage", "budget_x", "revenue_x", "movieDatasetRevenueRatio",  "budget_y", "revenue_y", "bechdelRevenueRatio",          "clean_test", "binary",              "vote_average","vote_count",          "runtime"]]
+dfNewData = dfAllData[["castFemalePercentage", "crewFemalePercentage", "budget_x", "revenue_x", "movieDatasetRevenueRatio",  "budget_y", "revenue_y", "bechdelRevenueRatio",         "vote_average","vote_count",          "runtime",       "nowomen", "notalk", "men", "dubious", "ok",          "clean_test"]]
 dfNewData.to_csv("BechdelDataPrepared.csv", index=False)
 
 
