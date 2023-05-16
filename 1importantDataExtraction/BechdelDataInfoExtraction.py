@@ -57,14 +57,14 @@ for i in range (dfAllData.shape[0]):
     # Movie dataset:
     budget = dfAllData.loc[i, "budget_x"]
     revenue = dfAllData.loc[i, "revenue"]
-    revenuePercentage = round(revenue/budget, 1) if revenue > 0 and budget > 0 else -1
+    revenuePercentage = round(revenue/budget, 10) if revenue > 0 and budget > 0 else -1
     dfAllData.loc[i, "movieDatasetRevenueRatio"] = revenuePercentage
     dfAllData.loc[i, "revenue_x"] = revenue
 
     # Bechdel:
     budget = dfAllData.loc[i, "budget_y"]
     revenue = dfAllData.loc[i, "domgross"] + dfAllData.loc[i, "intgross"]
-    revenuePercentage = round(revenue/budget, 1) if revenue > 0 and budget > 0 else -1
+    revenuePercentage = round(revenue/budget, 10) if revenue > 0 and budget > 0 else -1
     dfAllData.loc[i, "bechdelRevenueRatio"] = revenuePercentage
     dfAllData.loc[i, "revenue_y"] = revenue
 
@@ -112,7 +112,7 @@ print(dfAllData.columns)
 # Popularity ne vem kako je izracunan, zato ne includeam.
 # Includeam pa runtime, ker me zanima, kaksen je njegov vpliv.
 # Budget je pomemben dejavnik za RevenueRatio in morda celo za vote_average, zato ju includeam.
-dfNewData = dfAllData[["castFemalePercentage", "crewFemalePercentage", "budget_x", "revenue_x", "movieDatasetRevenueRatio",  "budget_y", "revenue_y", "bechdelRevenueRatio",         "vote_average","vote_count",          "runtime",       "nowomen", "notalk", "men", "dubious", "ok",          "clean_test"]]
+dfNewData = dfAllData[["castFemalePercentage", "crewFemalePercentage", "budget_x", "revenue_x", "movieDatasetRevenueRatio",  "budget_y", "revenue_y", "bechdelRevenueRatio",         "vote_average","vote_count",          "runtime",       "binary",        "nowomen", "notalk", "men", "dubious", "ok",          "clean_test"]]
 dfNewData.to_csv("BechdelDataPrepared.csv", index=False)
 
 
