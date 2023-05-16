@@ -158,6 +158,17 @@ print(invalid_num)
 
 
 
+
+print("nan values in all non-word places:")
+invalid_num = 0
+for col in range(dfAllData.shape[1]-1):
+    for row in range(dfAllData.shape[0]):
+        if math.isnan(dfAllData.iloc[row,col]):
+            invalid_num += 1
+print(invalid_num)
+
+
+
 print("\n\n\nWashing mashine goes brrrrr.\n\n\n")
 
 revenue_y = dfAllData.loc[:, "revenue_y"].tolist()
@@ -250,3 +261,19 @@ print(invalid_num)
 
 
 
+print("nan values in all non-word places:")
+invalid_num = 0
+for col in range(dfAllData.shape[1]-1):
+    for row in range(dfAllData.shape[0]):
+        if math.isnan(dfAllData.iloc[row,col]):
+            invalid_num += 1
+print(invalid_num)
+
+
+
+
+
+
+
+
+dfAllData.to_csv("BechdelCleanedData.csv", index=False)
