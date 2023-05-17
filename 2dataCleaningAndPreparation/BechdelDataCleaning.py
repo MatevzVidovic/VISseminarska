@@ -34,9 +34,28 @@ for ix in range(dfAllData.shape[1]-7):
     manager = plt.get_current_fig_manager()
     manager.full_screen_toggle()
     
-    #plt.show(block=False)
+    # plt.show(block=False)
 
 input("Blocking until you press enter.")
+
+
+print("castFemalePercentage invalid:")
+invalid_num = 0
+castFemalePercentage = dfAllData.loc[:, "castFemalePercentage"].tolist()
+for ix, val in enumerate(castFemalePercentage):
+    if val < 0:
+        invalid_num += 1
+print(invalid_num)
+
+
+
+print("crewFemalePercentage invalid:")
+invalid_num = 0
+crewFemalePercentage = dfAllData.loc[:, "crewFemalePercentage"].tolist()
+for ix, val in enumerate(crewFemalePercentage):
+    if val < 0:
+        invalid_num += 1
+print(invalid_num)
 
 
 
@@ -171,6 +190,26 @@ print(invalid_num)
 
 print("\n\n\nWashing mashine goes brrrrr.\n\n\n")
 
+
+castFemalePercentage = dfAllData.loc[:, "castFemalePercentage"].tolist()
+for ix, val in enumerate(castFemalePercentage):
+    if val < 0:
+        dfAllData.drop([ix], inplace=True)
+
+dfAllData.reset_index(drop=True, inplace=True)
+
+
+
+crewFemalePercentage = dfAllData.loc[:, "crewFemalePercentage"].tolist()
+for ix, val in enumerate(crewFemalePercentage):
+    if val < 0:
+        dfAllData.drop([ix], inplace=True)
+
+dfAllData.reset_index(drop=True, inplace=True)
+
+
+
+
 revenue_y = dfAllData.loc[:, "revenue_y"].tolist()
 for ix, val in reversed(list(enumerate(revenue_y))):
     if math.isnan(val):
@@ -203,6 +242,26 @@ dfAllData.reset_index(drop=True, inplace=True)
 
 
 print("\n\n\nAfter cleaning stats:\n\n\n")
+
+
+
+print("castFemalePercentage invalid:")
+invalid_num = 0
+castFemalePercentage = dfAllData.loc[:, "castFemalePercentage"].tolist()
+for ix, val in enumerate(castFemalePercentage):
+    if val < 0:
+        invalid_num += 1
+print(invalid_num)
+
+
+
+print("crewFemalePercentage invalid:")
+invalid_num = 0
+crewFemalePercentage = dfAllData.loc[:, "crewFemalePercentage"].tolist()
+for ix, val in enumerate(crewFemalePercentage):
+    if val < 0:
+        invalid_num += 1
+print(invalid_num)
 
 
 

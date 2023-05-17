@@ -40,7 +40,7 @@ for i in range (dfAllData.shape[0]):
     # castFemalePercentage:
     numOfFemCast = dfAllData.loc[i, "femaleCast"]
     numOfMaleCast = dfAllData.loc[i, "maleCast"]
-    femaleCastPercentage = round(100 * numOfFemCast / (numOfFemCast + numOfMaleCast), 1) if (numOfFemCast + numOfMaleCast) != 0 else -1
+    femaleCastPercentage = round(100 * numOfFemCast / (numOfFemCast + numOfMaleCast), 1) if (numOfFemCast + numOfMaleCast) > 0 else -1
     
     dfAllData.loc[i, "castFemalePercentage"] = femaleCastPercentage
 
@@ -48,7 +48,7 @@ for i in range (dfAllData.shape[0]):
     # crewFemalePercentage:
     numOfFemCrew = dfAllData.loc[i, "femaleCrew"]
     numOfMaleCrew = dfAllData.loc[i, "maleCrew"]
-    femaleCrewPercentage = round(100 * numOfFemCrew / (numOfFemCrew + numOfMaleCrew), 1) if (numOfFemCrew + numOfMaleCrew) else -1
+    femaleCrewPercentage = round(100 * numOfFemCrew / (numOfFemCrew + numOfMaleCrew), 1) if (numOfFemCrew + numOfMaleCrew) > 0 else -1
     
     dfAllData.loc[i, "crewFemalePercentage"] = femaleCrewPercentage
 
