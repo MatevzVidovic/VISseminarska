@@ -4,11 +4,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def countplot(inputArray, numOfBuckets=100):  
+def countplot(inputArray, numOfBuckets=100, title=""):  
     fig, ax = plt.subplots()
     ax.hist(inputArray, numOfBuckets)
     manager = plt.get_current_fig_manager()
     manager.full_screen_toggle()
+    if(title != ""):
+        plt.title(title)
     plt.show(block=False)
 
  
@@ -29,13 +31,13 @@ dfVote_average = dfAllData[["vote_average"]]
 
 
 arrMoviesDBIndepVars = dfMoviesDBIndepVars.to_numpy()
-print(arrMoviesDBIndepVars)
+# print(arrMoviesDBIndepVars)
 arrBechdel = dfBechdel.to_numpy()
 
 arrRevenue_x = dfRevenue_x.to_numpy()
 arrRevenue_y = dfRevenue_y.to_numpy()
 arrVote_average = dfVote_average.to_numpy()
-print(arrRevenue_y)
+# print(arrRevenue_y)
 
 
 
@@ -56,29 +58,29 @@ arrVote_averageStd = np.std(arrVote_average, axis=0)
 
 
 
-print(arrMoviesDBmeans)
-print(arrMoviesDBstds)
+# print(arrMoviesDBmeans)
+# print(arrMoviesDBstds)
 
-print(arrBechdelMeans)
-print(arrBechdelStds)
+# print(arrBechdelMeans)
+# print(arrBechdelStds)
 
-print(arrRevenue_xMean)
-print(arrRevenue_xStd)
+# print(arrRevenue_xMean)
+# print(arrRevenue_xStd)
 
-print(arrRevenue_yMean)
-print(arrRevenue_yStd)
+# print(arrRevenue_yMean)
+# print(arrRevenue_yStd)
 
-print(arrVote_averageMean)
-print(arrVote_averageStd)
-
-
+# print(arrVote_averageMean)
+# print(arrVote_averageStd)
 
 
 
-testArray1 = np.array([[1, 2, 3], [4, 5, 6]], np.int32)
-testArray2 = np.array([[1, 2, 3]], np.int32)
-testRes1 = testArray1 / testArray2
-print(testRes1)
+
+
+# testArray1 = np.array([[1, 2, 3], [4, 5, 6]], np.int32)
+# testArray2 = np.array([[1, 2, 3]], np.int32)
+# testRes1 = testArray1 / testArray2
+# print(testRes1)
 
 
 
@@ -97,12 +99,12 @@ normVote_average = (arrVote_average - arrVote_averageMean) / arrVote_averageStd
 
 
 
-print(normMoviesDBIndepVars)
-print(normBechdel)
+# print(normMoviesDBIndepVars)
+# print(normBechdel)
 
-print(normRevenue_x)
-print(normRevenue_y)
-print(normVote_average)
+# print(normRevenue_x)
+# print(normRevenue_y)
+# print(normVote_average)
 
 
 
@@ -161,8 +163,8 @@ reasonableNormBechdel= normBechdel[:,0:4]
 reasonableNormMoviesDBIndepVarsAccountingForBechdel = np.concatenate((normMoviesDBIndepVars[:,0:4], arrMoviesDBIndepVars[:,4:]), axis=1)
 reasonableNormBechdelAccountingForBechdel= np.concatenate((normBechdel[:,0:4], arrBechdel[:,4:]), axis=1)
 
-print(reasonableNormMoviesDBIndepVarsAccountingForBechdel)
-print(reasonableNormBechdelAccountingForBechdel)
+# print(reasonableNormMoviesDBIndepVarsAccountingForBechdel)
+# print(reasonableNormBechdelAccountingForBechdel)
 
 
 
@@ -202,16 +204,16 @@ for matrix in relevantMatrices:
     # print("numOfRows:")
     # print(numOfRows)
     vecOfOnes = np.ones_like(matrix[:,0:1])
-    print(vecOfOnes)
-    print(vecOfOnes.shape)
+    # print(vecOfOnes)
+    # print(vecOfOnes.shape)
 
-    print("Shape of matrix before preparation for inversing:")
-    print(matrix.shape)
+    # print("Shape of matrix before preparation for inversing:")
+    # print(matrix.shape)
 
     matrix = np.concatenate((vecOfOnes, matrix), axis=1)
-    print(matrix)
-    print("Shape of matrix prepared for inversing:")
-    print(matrix.shape)
+    # print(matrix)
+    # print("Shape of matrix prepared for inversing:")
+    # print(matrix.shape)
 
     Mplus = np.linalg.pinv(matrix)
 
@@ -220,7 +222,7 @@ for matrix in relevantMatrices:
         resultingCoefs = np.matmul(Mplus, dependantVec)
         coefficientsList.append(resultingCoefs)
 
-print(coefficientsList)
+# print(coefficientsList)
 
 
 
@@ -235,18 +237,23 @@ for i in depNames:
 
 
 for ix, coeffVector in enumerate(coefficientsList):
+    
+    if ix < 3*3 and ix%3 == 1:
+        continue
+    if ix >= 3*3 and ix%3 == 0:
+        continue
+
     fig, ax = plt.subplots()
     coeffVector = (np.transpose(coeffVector))[0,:]
-    print(coeffVector)
-    print(coeffVector.shape)
-    print(list(dfMoviesDBIndepVars.columns))
+    # print(coeffVector)
+    # print(coeffVector.shape)
+    # print(list(dfMoviesDBIndepVars.columns))
     dependantVarNames = ["constant"] + list(dfMoviesDBIndepVars.columns[0:coeffVector.size-1])
     ax.bar(dependantVarNames, coeffVector)
     plt.title(titleNames[ix])
     manager = plt.get_current_fig_manager()
     manager.full_screen_toggle()
     plt.show(block=False)
-
 
 
 
@@ -262,6 +269,77 @@ input("Blocking until you press enter:")
 
 
 
+# !!!
+# !!!
+# Cilj je preveriti normality hypothesis napak. In cilj je preveriti unbiasedness napak.
+# !!!
+# Spodaj je kopija kode zgoraj, le da bom tokrat gledal napake, ki jih model povzroci.
+# Torej, ustvaril bom vektorje:    vecDepenVars - (M+ * vecDepenVars)
+# Potem pa gledal njihov countplot/histogram.
+# !!!
+# Ideja je - malo bolj razdelane zgornje enacbe:
+# M * vecCoef + error = vecDepenVars
+# M+ * M * vecCoef + M+ * error = M+ * vecDepenVars
+# vecCoef + M+ * error = M+ * vecDepenVars
+# M * vecCoef + M * M+ * error  = M * M+ * vecDepenVars
+# M * vecCoef + error  = vecDepenVars
+# error = vecDepenVars - M * vecCoef
+# !!!
+# !!!
+
+
+# norm izvedba, reasonable izvedba, reasonableAccountingForIzvedba. Za relevant revenue in za vote_average.
+
+moviesDBmatrices = [normMoviesDBIndepVars, reasonableNormMoviesDBIndepVars, reasonableNormMoviesDBIndepVarsAccountingForBechdel]
+bechdelMatrices = [normBechdel, reasonableNormBechdel, reasonableNormBechdelAccountingForBechdel]
+
+dependentVarsVectors = [normRevenue_x, normRevenue_y, normVote_average]
+
+relevantMatrices = moviesDBmatrices + bechdelMatrices
+
+errorVectors = []
+for matrix in relevantMatrices:
+    # numOfRows = matrix.shape[0]
+    # print("numOfRows:")
+    # print(numOfRows)
+    vecOfOnes = np.ones_like(matrix[:,0:1])
+
+    matrix = np.concatenate((vecOfOnes, matrix), axis=1)
+    
+    Mplus = np.linalg.pinv(matrix)
+
+    for dependantVec in dependentVarsVectors:
+        resultingCoefs = np.matmul(Mplus, dependantVec)
+        resultingErrors = dependantVec -  np.matmul(matrix, resultingCoefs)
+
+        errorVectors.append(resultingErrors)
+
+# print(errorVectors)
+
+
+
+# make names for figures
+depNames = ["normMoviesDBIndepVars", "reasonableNormMoviesDBIndepVars", "reasonableNormMoviesDBIndepVarsAccountingForBechdel", "normBechdel", "reasonableNormBechdel", "reasonableNormBechdelAccountingForBechdel"]
+indepNames = ["normRevenue_x", "normRevenue_y", "normVote_average"]
+titleNames = []
+for i in depNames:
+    for j in indepNames:
+        titleNames.append(i + " attempt.  "  + "Errors of " + j)
+
+for ix, errorVector in enumerate(errorVectors):
+    if ix < 3*3 and ix%3 == 1:
+        continue
+    if ix >= 3*3 and ix%3 == 0:
+        continue
+
+    # countplot(errorVector, title=titleNames[ix])
+
+    bias = np.sum(errorVector)
+    # bias = (np.count_nonzero(errorVector > 0) - np.count_nonzero(errorVector < 0)) / (np.count_nonzero(errorVector > 0) + np.count_nonzero(errorVector <= 0))
+    print(titleNames[ix])
+    print(bias)
+
+input("Blocking until you press enter:")
 
 
 
