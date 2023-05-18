@@ -109,9 +109,6 @@ print(normVote_average)
 
 
 
-
-
-
 # countplot(arrMoviesDBIndepVars)
 # countplot(arrBechdel)
 
@@ -139,15 +136,6 @@ print(normVote_average)
 
 
 
-
-
-
-
-
-
-
-
-
 # countplot(normMoviesDBIndepVars, 200)
 # countplot(normBechdel, 200)
 
@@ -161,19 +149,103 @@ print(normVote_average)
 reasonableNormMoviesDBIndepVars = normMoviesDBIndepVars[:,0:4]
 reasonableNormBechdel= normBechdel[:,0:4]
 
-countplot(reasonableNormMoviesDBIndepVars, 200)
-countplot(reasonableNormBechdel, 200)
+# countplot(reasonableNormMoviesDBIndepVars, 200)
+# countplot(reasonableNormBechdel, 200)
+
+
+
+# countplot(reasonableNormBechdel[:,1], 200)
+# countplot(arrBechdel[:,1], 200)
+
+
+reasonableNormMoviesDBIndepVarsAccountingForBechdel = np.concatenate((normMoviesDBIndepVars[:,0:4], arrMoviesDBIndepVars[:,4:]), axis=1)
+reasonableNormBechdelAccountingForBechdel= np.concatenate((normBechdel[:,0:4], arrBechdel[:,4:]), axis=1)
+
+print(reasonableNormMoviesDBIndepVarsAccountingForBechdel)
+print(reasonableNormBechdelAccountingForBechdel)
 
 
 
 
 
-countplot(reasonableNormBechdel[:,1], 200)
-countplot(arrBechdel[:,1], 200)
+# input("Blocking until you press enter:")
 
 
 
 
+
+# Zdaj je plan uporabiti Moore-Penrose psevdoinverz za izracun najboljsih koeficientov v multilinearni regresiji.
+# Povsod se uporablja linearna funkcija (k*x + c), torej v vseh obstojecih stolpcih samo ostane trenutna vrednost (saj je to x).
+# K-ji bodo vektor koeficientov.
+
+# C-ji pri vseh funkcijah pa se bodo sesteli v en sam C.
+# Zanj moramo v matriko M na levo dodati stolpec samih 1 - da je (C = coef * 1 = coef), torej je C simple razbrati.
+# Dobljen koeficient za ta stolpcec pa bo toraj povedal, kaksen je sestevek teh C.
+
+# M * vecCoef = vecDepenVars
+# M+ * M * vecCoef = M+ * vecDepenVars
+# vecCoef = M+ * vecDepenVars
+
+
+# norm izvedba, reasonable izvedba, reasonableAccountingForIzvedba. Za relevant revenue in za vote_average.
+
+moviesDBmatrices = [normMoviesDBIndepVars, reasonableNormMoviesDBIndepVars, reasonableNormMoviesDBIndepVarsAccountingForBechdel]
+bechdelMatrices = [normBechdel, reasonableNormBechdel, reasonableNormBechdelAccountingForBechdel]
+
+dependentVarsVectors = [normRevenue_x, normRevenue_y, normVote_average]
+
+relevantMatrices = moviesDBmatrices + bechdelMatrices
+
+coefficientsList = []
+for matrix in relevantMatrices:
+    # numOfRows = matrix.shape[0]
+    # print("numOfRows:")
+    # print(numOfRows)
+    vecOfOnes = np.ones_like(matrix[:,0:1])
+    print(vecOfOnes)
+    print(vecOfOnes.shape)
+
+    print("Shape of matrix before preparation for inversing:")
+    print(matrix.shape)
+
+    matrix = np.concatenate((vecOfOnes, matrix), axis=1)
+    print(matrix)
+    print("Shape of matrix prepared for inversing:")
+    print(matrix.shape)
+
+    Mplus = np.linalg.pinv(matrix)
+
+
+    for dependantVec in dependentVarsVectors:
+        resultingCoefs = np.matmul(Mplus, dependantVec)
+        coefficientsList.append(resultingCoefs)
+
+print(coefficientsList)
+
+
+
+# make names for figures
+depNames = ["normMoviesDBIndepVars", "reasonableNormMoviesDBIndepVars", "reasonableNormMoviesDBIndepVarsAccountingForBechdel", "normBechdel", "reasonableNormBechdel", "reasonableNormBechdelAccountingForBechdel"]
+indepNames = ["normRevenue_x", "normRevenue_y", "normVote_average"]
+titleNames = []
+for i in depNames:
+    for j in indepNames:
+        titleNames.append(i + "    to    " + j)
+
+
+
+for ix, coeffVector in enumerate(coefficientsList):
+    fig, ax = plt.subplots()
+    coeffVector = (np.transpose(coeffVector))[0,:]
+    print(coeffVector)
+    print(coeffVector.shape)
+    print(list(dfMoviesDBIndepVars.columns))
+    dependantVarNames = ["constant"] + list(dfMoviesDBIndepVars.columns[0:coeffVector.size-1])
+    ax.bar(dependantVarNames, coeffVector)
+    plt.title(titleNames[ix])
+    manager = plt.get_current_fig_manager()
+    manager.full_screen_toggle()
+    plt.show(block=False)
 
 
 
@@ -189,52 +261,21 @@ input("Blocking until you press enter:")
 
 
 
-# This conversion to numpy arrays just doesn't seem to work:
-
-
-# listOfArrays = []
-
-# columnNames = dfAllData.columns
-# for ix in range(dfAllData.shape[1]):
-#     listOfArrays.append(dfAllData[ix].to_numpy())
-    # currColumn = dfAllData.iloc[:, ix].tolist()
-    # listOfArrays.append(np.array(currColumn))
-
-# print(listOfArrays)
 
 
 
 
-# listOfMeans = []
-# listOfStandardDeviations = []
-
-# for ix in range(len(listOfArrays)-1):
-#     listOfMeans.append(np.mean(listOfArrays[ix]))
-#     listOfStandardDeviations.append(np.std(listOfArrays[ix]))
-
-# print(listOfMeans)
-# print(listOfStandardDeviations)
 
 
 
 
-# listOfNormalizedArrays = []
-
-# for ix in range(len(listOfArrays)-1):
-#     arrayToAppend = (listOfArrays[ix] - listOfMeans[ix]) / listOfStandardDeviations[ix]
-#     listOfNormalizedArrays.append(arrayToAppend)
-
-# print(listOfNormalizedArrays)
 
 
 
 
-# concatenatedArray = listOfNormalizedArrays[0]
-# for ix in range(1, len(listOfNormalizedArrays)):
-#     np.concatenate((concatenatedArray, listOfNormalizedArrays[ix]), axis=0)
-# print(concatenatedArray)
-# concatenatedArray = np.transpose(concatenatedArray)
-# print(concatenatedArray)
+
+
+
 
 
 
