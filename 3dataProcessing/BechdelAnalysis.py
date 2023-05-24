@@ -324,7 +324,7 @@ indepNames = ["normRevenue_x", "normRevenue_y", "normVote_average"]
 titleNames = []
 for i in depNames:
     for j in indepNames:
-        titleNames.append(i + " attempt.  "  + "Errors of " + j)
+        titleNames.append(i + " attempt.  "  + "Bias (sum of errors) of " + j)
 
 for ix, errorVector in enumerate(errorVectors):
     if ix < 3*3 and ix%3 == 1:

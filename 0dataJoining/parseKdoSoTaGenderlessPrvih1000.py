@@ -49,7 +49,7 @@ for i in range (df.shape[0]):
 
     
 
-df.to_csv("genderParsed.csv", index=False)
+df.to_csv("genderParsedPrvih1000.csv", index=False)
 
 
 
