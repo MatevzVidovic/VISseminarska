@@ -260,6 +260,9 @@ for ix, coeffVector in enumerate(coefficientsList):
 input("Blocking until you press enter:")
 
 
+plt.close()
+
+
 
 
 
@@ -332,7 +335,7 @@ for ix, errorVector in enumerate(errorVectors):
     if ix >= 3*3 and ix%3 == 0:
         continue
 
-    # countplot(errorVector, title=titleNames[ix])
+    countplot(errorVector, title=titleNames[ix])
 
     bias = np.sum(errorVector)
     # bias = (np.count_nonzero(errorVector > 0) - np.count_nonzero(errorVector < 0)) / (np.count_nonzero(errorVector > 0) + np.count_nonzero(errorVector <= 0))
