@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
  
-dfAllData = pd.read_csv('dataExtracted.csv')
+dfAllData = pd.read_csv('cleanedData.csv')
 
 
 
@@ -17,7 +17,6 @@ castFemPercent = dfAllData.loc[:, "castFemalePercentage"].tolist()
 
 columnNames = dfAllData.columns
 for ix in range(dfAllData.shape[1]):
-
     currColumn = dfAllData.iloc[:, ix].tolist()
     fig, ax = plt.subplots()
     ax.scatter(castFemPercent, currColumn)

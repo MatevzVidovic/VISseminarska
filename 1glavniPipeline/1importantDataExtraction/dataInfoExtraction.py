@@ -97,7 +97,7 @@ for i in range (dfAllData.shape[0]):
         # print(decimalOfYearSoFar)
         dfAllData.loc[i, "releaseTimeOfYear"] = decimalOfYearSoFar
     except:
-        print(dateString)
+        print("Invalid date string: " + str(dateString))
         dfAllData.loc[i, "releaseYear"] = None
         dfAllData.loc[i, "releaseTimeOfYear"] = None
 
@@ -106,8 +106,8 @@ for i in range (dfAllData.shape[0]):
 
     originalLanguage = dfAllData.loc[i, "original_language"]
     if(type(originalLanguage) != str):
-        print("For original language:")
-        print(type(originalLanguage))
+        print("Invalid original language type: " + str(type(originalLanguage)))
+        print("Its language value: " + str(originalLanguage))
         dfAllData.loc[i, "original_language"] = "NoneString"
     
 
@@ -177,6 +177,6 @@ print(dfAllData.columns)
 # "genres" isto
 # "status" je samo ce je ze released
 dfNewData = dfAllData[["castFemalePercentage", "crewFemalePercentage", "budget", "revenue", "revenueRatio",         "vote_average","vote_count",          "runtime",              "releaseYear", "releaseTimeOfYear", "original_language", "popularity"]]
-dfNewData.to_csv("dataPrepared.csv", index=False)
+dfNewData.to_csv("dataExtracted.csv", index=False)
 
 

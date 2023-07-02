@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
  
-dfAllData = pd.read_csv('BechdelCleanedData.csv')
+dfAllData = pd.read_csv('preparedData.csv')
 
 
 

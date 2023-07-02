@@ -6,7 +6,7 @@ import numpy as np
 import math
 
  
-dfAllData = pd.read_csv('dataPrepared.csv')
+dfAllData = pd.read_csv('dataExtracted.csv')
 
 
 
@@ -27,7 +27,7 @@ for ix in range(dfAllData.shape[1]):
         xseq = np.linspace(0, 100, num=100)
         ax.plot(xseq, c + k * xseq, color="k", lw=2.5)
     except:
-        print("Regression unable")
+        print("Regression unable: " + columnNames[ix])
 
     # mng = plt.get_current_fig_manager()
     # mng.resize(*mng.window.maxsize())
