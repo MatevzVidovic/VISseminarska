@@ -176,7 +176,7 @@ print(dfAllData.columns)
 # "production_countries", kinda koga briga, pa lahko jih je vec, pa malo vec za sparseat 
 # "genres" isto
 # "status" je samo ce je ze released
-dfNewData = dfAllData[["castFemalePercentage", "crewFemalePercentage", "budget", "revenue", "revenueRatio",         "vote_average","vote_count",          "runtime",              "releaseYear", "releaseTimeOfYear", "original_language", "popularity"]]
+dfNewData = dfAllData[["castFemalePercentage", "crewFemalePercentage", "budget", "revenue", "revenueRatio",         "vote_average","vote_count",          "runtime",              "releaseYear", "releaseTimeOfYear", "original_language", "popularity",      "original_title", "title"]]
 dfNewData.to_csv("dataExtracted.csv", index=False)
 
 

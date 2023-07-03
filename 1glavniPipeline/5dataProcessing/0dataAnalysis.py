@@ -37,6 +37,11 @@ est = sm.OLS(y, X).fit()
 print(est.summary())
 
 
+y = dfAllData['revenue'] 
+est = sm.OLS(y, X).fit() 
+print(est.summary())
+
+
 # X = df.copy() 
 # y = X.pop('chd') 
 # df.head()

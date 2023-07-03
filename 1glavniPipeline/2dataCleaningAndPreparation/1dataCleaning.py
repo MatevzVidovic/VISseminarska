@@ -14,7 +14,7 @@ dfAllData = pd.read_csv('dataExtracted.csv')
 castFemPercent = dfAllData.loc[:, "castFemalePercentage"].tolist()
 
 columnNames = dfAllData.columns
-for ix in range(dfAllData.shape[1]):
+for ix in range(dfAllData.shape[1] - 2):
     currColumn = dfAllData.iloc[:, ix].tolist()
     fig, ax = plt.subplots()
     ax.scatter(castFemPercent, currColumn)
@@ -157,9 +157,9 @@ print(invalid_num)
 
 print("nan values in all non-word places:")
 invalid_num = 0
-for col in range(dfAllData.shape[1]):
+for col in range(dfAllData.shape[1] - 2):
     
-    if (col == dfAllData.shape[1]-2):
+    if (col == dfAllData.shape[1] - 4):
         continue
 
     for row in range(dfAllData.shape[0]):
@@ -379,9 +379,9 @@ print(invalid_num)
 
 print("nan values in all non-word places:")
 invalid_num = 0
-for col in range(dfAllData.shape[1]):
+for col in range(dfAllData.shape[1] - 2):
     
-    if (col == dfAllData.shape[1]-2):
+    if (col == dfAllData.shape[1] - 4):
         continue
 
     for row in range(dfAllData.shape[0]):

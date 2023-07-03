@@ -81,11 +81,33 @@ y1 = y.apply(lambda col : ((col - depMean) / depStd))
 
 
 
+est = sm.OLS(y1, X).fit() 
+print(est.summary())
 
 
+
+
+
+
+
+y = dfAllData['revenue']
+
+
+depNp = y.to_numpy()
+
+depMean = np.mean(depNp, axis=0)
+
+depStd = np.std(depNp, axis=0)
+
+
+y1 = y.apply(lambda col : ((col - depMean) / depStd))
 
 est = sm.OLS(y1, X).fit() 
 print(est.summary())
+
+
+
+
 
 
 # X = df.copy() 
