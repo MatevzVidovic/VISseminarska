@@ -68,8 +68,7 @@ print("Num of outliers: " + str(numsOfOutliers))
 
 print()
 print("Indexes to be removed in total: " + str(len(ixsToEliminate)))
-
-
+    
 
 
 

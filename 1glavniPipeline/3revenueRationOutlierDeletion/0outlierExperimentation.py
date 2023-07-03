@@ -63,9 +63,28 @@ for ix2 in range(len(npArr)):
 
 
 
+
+
+for val in ixsToEliminate:
+    print(val)
+    print(str(dfAllData.loc[val, 'budget']))
+    print(str(dfAllData.loc[val, 'revenue']))
+    print(str(dfAllData.loc[val, 'revenueRatio']))
+    print()
+
+
+
+
+
 print("Num of outliers: " + str(numsOfOutliers))
 
 
 print()
 print("Indexes to be removed in total: " + str(len(ixsToEliminate)))
+
+
+
+
+
+
 
