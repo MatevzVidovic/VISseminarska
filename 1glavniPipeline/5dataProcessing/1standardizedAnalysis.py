@@ -54,8 +54,9 @@ X = sm.add_constant(X)
 est = sm.OLS(y1, X).fit() 
 print(est.summary())
 
-
-
+print()
+print()
+print()
 
 
 
@@ -84,7 +85,9 @@ y1 = y.apply(lambda col : ((col - depMean) / depStd))
 est = sm.OLS(y1, X).fit() 
 print(est.summary())
 
-
+print()
+print()
+print()
 
 
 

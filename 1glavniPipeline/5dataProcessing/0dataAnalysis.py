@@ -31,11 +31,18 @@ X = sm.add_constant(X)
 est = sm.OLS(y, X).fit() 
 print(est.summary())
 
+print()
+print()
+print()
+
 
 y = dfAllData['vote_average'] 
 est = sm.OLS(y, X).fit() 
 print(est.summary())
 
+print()
+print()
+print()
 
 y = dfAllData['revenue'] 
 est = sm.OLS(y, X).fit() 

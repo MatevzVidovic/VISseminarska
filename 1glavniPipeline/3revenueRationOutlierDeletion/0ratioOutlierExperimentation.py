@@ -4,6 +4,20 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# This turns out to be a terrible metric.
+# Because a bunch of these movies, while still being outliers,
+# aren't such because of false information.
+# They are actually correct info.
+# And since I'm not building a prediction model, but rather examining the Pearson correlation, these have to stay in.
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
 
 # max is the ratio above which things are simply nonsensical outliers.
 max = 300

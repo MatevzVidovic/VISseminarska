@@ -6,7 +6,7 @@ import numpy as np
 
 
 # If under min, it's an outlier.
-min = 50000
+min = 1000
 
 
 # This really doesn't present any problems.
