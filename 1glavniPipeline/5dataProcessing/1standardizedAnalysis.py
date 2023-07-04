@@ -16,7 +16,7 @@ def countplot(inputArray, numOfBuckets=100, title=""):
     plt.show(block=False)
 
  
-dfAllData = pd.read_csv('preparedData.csv')
+dfAllData = pd.read_csv('langPreparedData.csv')
 
 
 
@@ -24,7 +24,7 @@ dfAllData = pd.read_csv('preparedData.csv')
 # vote_average,vote_count,runtime,releaseYear,releaseTimeOfYear,original_language,popularity
 
 X = dfAllData[['castFemalePercentage', 'crewFemalePercentage', 'budget', 'runtime', 'releaseYear', 'releaseTimeOfYear']] 
-y = dfAllData['revenueRatio'] 
+y = dfAllData['vote_average']
 
 
 
@@ -57,37 +57,35 @@ print(est.summary())
 print()
 print()
 print()
-
-
-
-
-
-
-
-
-
-
-y = dfAllData['vote_average']
-
-
-
-depNp = y.to_numpy()
-
-depMean = np.mean(depNp, axis=0)
-
-depStd = np.std(depNp, axis=0)
-
-
-y1 = y.apply(lambda col : ((col - depMean) / depStd))
-
-
-
-est = sm.OLS(y1, X).fit() 
-print(est.summary())
-
 print()
 print()
 print()
+
+
+
+
+
+
+
+
+# Se je izkazalo za malo pointless:
+
+# y = dfAllData['revenueRatio'] 
+
+# depNp = y.to_numpy()
+
+# depMean = np.mean(depNp, axis=0)
+
+# depStd = np.std(depNp, axis=0)
+
+# y1 = y.apply(lambda col : ((col - depMean) / depStd))
+
+# est = sm.OLS(y1, X).fit() 
+# print(est.summary())
+
+# print()
+# print()
+# print()
 
 
 

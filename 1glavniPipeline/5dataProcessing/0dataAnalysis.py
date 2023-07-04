@@ -15,7 +15,7 @@ def countplot(inputArray, numOfBuckets=100, title=""):
     plt.show(block=False)
 
  
-dfAllData = pd.read_csv('preparedData.csv')
+dfAllData = pd.read_csv('langPreparedData.csv')
 
 
 
@@ -23,7 +23,7 @@ dfAllData = pd.read_csv('preparedData.csv')
 # vote_average,vote_count,runtime,releaseYear,releaseTimeOfYear,original_language,popularity
 
 X = dfAllData[['castFemalePercentage', 'crewFemalePercentage', 'budget', 'runtime', 'releaseYear', 'releaseTimeOfYear']] 
-y = dfAllData['revenueRatio'] 
+y = dfAllData['vote_average'] 
 dfAllData.head()
 
 
@@ -34,15 +34,25 @@ print(est.summary())
 print()
 print()
 print()
-
-
-y = dfAllData['vote_average'] 
-est = sm.OLS(y, X).fit() 
-print(est.summary())
-
 print()
 print()
 print()
+
+
+
+# Se je izkazalo za malo pointless:
+
+# y = dfAllData['revenueRatio'] 
+# est = sm.OLS(y, X).fit() 
+# print(est.summary())
+
+# print()
+# print()
+# print()
+
+
+
+
 
 y = dfAllData['revenue'] 
 est = sm.OLS(y, X).fit() 

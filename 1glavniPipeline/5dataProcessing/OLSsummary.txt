@@ -1,0 +1,70 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:           vote_average   R-squared:                       0.169
+Model:                            OLS   Adj. R-squared:                  0.168
+Method:                 Least Squares   F-statistic:                     157.9
+Date:                Tue, 04 Jul 2023   Prob (F-statistic):          4.45e-183
+Time:                        12:53:59   Log-Likelihood:                -5531.2
+No. Observations:                4656   AIC:                         1.108e+04
+Df Residuals:                    4649   BIC:                         1.112e+04
+Df Model:                           6                                         
+Covariance Type:            nonrobust                                         
+========================================================================================
+                           coef    std err          t      P>|t|      [0.025      0.975]
+----------------------------------------------------------------------------------------
+const                   21.4116      1.644     13.027      0.000      18.189      24.634
+castFemalePercentage    -0.0042      0.001     -5.664      0.000      -0.006      -0.003
+crewFemalePercentage     0.0046      0.001      6.008      0.000       0.003       0.006
+budget               -9.557e-10   3.11e-10     -3.074      0.002   -1.57e-09   -3.46e-10
+runtime                  0.0145      0.001     23.540      0.000       0.013       0.016
+releaseYear             -0.0084      0.001    -10.207      0.000      -0.010      -0.007
+releaseTimeOfYear        0.1727      0.042      4.105      0.000       0.090       0.255
+==============================================================================
+Omnibus:                      257.789   Durbin-Watson:                   1.866
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              377.435
+Skew:                          -0.487   Prob(JB):                     1.10e-82
+Kurtosis:                       3.998   Cond. No.                     7.66e+09
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 7.66e+09. This might indicate that there are
+strong multicollinearity or other numerical problems.
+
+
+
+
+
+
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                revenue   R-squared:                       0.531
+Model:                            OLS   Adj. R-squared:                  0.531
+Method:                 Least Squares   F-statistic:                     878.2
+Date:                Tue, 04 Jul 2023   Prob (F-statistic):               0.00
+Time:                        12:53:59   Log-Likelihood:                -93225.
+No. Observations:                4656   AIC:                         1.865e+05
+Df Residuals:                    4649   BIC:                         1.865e+05
+Df Model:                           6                                         
+Covariance Type:            nonrobust                                         
+========================================================================================
+                           coef    std err          t      P>|t|      [0.025      0.975]
+----------------------------------------------------------------------------------------
+const                 8.581e+08   2.49e+08      3.451      0.001    3.71e+08    1.35e+09
+castFemalePercentage  4.129e+05   1.13e+05      3.664      0.000    1.92e+05    6.34e+05
+crewFemalePercentage  4.451e+04   1.17e+05      0.381      0.703   -1.84e+05    2.74e+05
+budget                   3.0545      0.047     64.935      0.000       2.962       3.147
+runtime               4.877e+05   9.33e+04      5.229      0.000    3.05e+05    6.71e+05
+releaseYear          -4.655e+05   1.24e+05     -3.749      0.000   -7.09e+05   -2.22e+05
+releaseTimeOfYear     3.423e+05   6.37e+06      0.054      0.957   -1.21e+07    1.28e+07
+==============================================================================
+Omnibus:                     3784.503   Durbin-Watson:                   1.979
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):           231850.032
+Skew:                           3.437   Prob(JB):                         0.00
+Kurtosis:                      36.880   Cond. No.                     7.66e+09
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 7.66e+09. This might indicate that there are
+strong multicollinearity or other numerical problems.
