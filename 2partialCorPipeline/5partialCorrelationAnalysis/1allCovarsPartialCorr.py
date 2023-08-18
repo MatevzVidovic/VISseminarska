@@ -31,10 +31,36 @@ dfAllData = pd.read_csv('langPreparedData.csv')
 
 
 
-Z = ['budget', 'runtime', 'releaseYear', 'releaseTimeOfYear']
+Z = ['budget', 'runtime', 'releaseYear', 'releaseTimeOfYear', "crewFemalePercentage"]
 
 corrType = ["pearson"] # , "spearman"
-x = ["castFemalePercentage", "crewFemalePercentage"]
+x = ["castFemalePercentage"]
+y = ["revenue", "vote_average"] # , "revenueRatio", "vote_count"
+
+for j in x:
+    for k in y:
+        for i in corrType:
+            print("------------------------------------------")
+            print(j + ", " + k + ", " + i + ":")
+            print("Covariates: " + str(Z))
+            print(str(pg.partial_corr(data=dfAllData, x=j, y=k, covar=Z, method=i).round(3)))
+            print()
+            print("Osnovna korelacija, brez odstranitve katerihkoli vplivov:")
+            print(j + ", " + k + ", " + i + ":")
+            print(str(pg.partial_corr(data=dfAllData, x=j, y=k, covar=None, method=i).round(3)))
+            print("------------------------------------------")
+            print("\n\n")
+
+
+
+
+
+
+
+Z = ['budget', 'runtime', 'releaseYear', 'releaseTimeOfYear', "castFemalePercentage"]
+
+corrType = ["pearson"] # , "spearman"
+x = ["crewFemalePercentage"]
 y = ["revenue", "vote_average"] # , "revenueRatio", "vote_count"
 
 for j in x:
