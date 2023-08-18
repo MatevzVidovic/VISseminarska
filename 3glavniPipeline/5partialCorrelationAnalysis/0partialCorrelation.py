@@ -35,7 +35,7 @@ Z = ['budget', 'runtime', 'releaseYear', 'releaseTimeOfYear']
 
 corrType = ["pearson"] # , "spearman"
 x = ["castFemalePercentage", "crewFemalePercentage", "directorGender"]
-y = ["revenue", "vote_average", "revenueRatio"] # , "vote_count"
+y = ["revenue", "vote_average", "revenueRatio", "vote_count"]
 
 for j in x:
     for k in y:

@@ -25,7 +25,7 @@ dfAllData = pd.read_csv('langPreparedData.csv')
 
 X = dfAllData[['directorGender', 'castFemalePercentage', 'crewFemalePercentage', 'budget', 'runtime', 'releaseYear', 'releaseTimeOfYear']] 
 
-Y = ['vote_average', 'revenue', 'revenueRatio']
+Y = ['vote_average', 'revenue', 'revenueRatio', 'vote_count']
 
 
 indepNp = X.to_numpy()

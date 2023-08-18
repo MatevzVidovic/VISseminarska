@@ -22,7 +22,7 @@ dfAllData = pd.read_csv('langPreparedData.csv')
 # castFemalePercentage,crewFemalePercentage,budget,revenue,revenueRatio,
 # vote_average,vote_count,runtime,releaseYear,releaseTimeOfYear,original_language,popularity
 
-Y = ['vote_average', 'revenue', 'revenueRatio']
+Y = ['vote_average', 'revenue', 'revenueRatio', 'vote_count']
 
 X = dfAllData[['directorGender', 'castFemalePercentage', 'crewFemalePercentage', 'budget', 'runtime', 'releaseYear', 'releaseTimeOfYear']] 
 dfAllData.head()

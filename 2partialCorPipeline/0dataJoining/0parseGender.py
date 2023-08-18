@@ -18,7 +18,7 @@ df.insert(3, "noDataCrew", initGenderCol, True)
 df.insert(4, "femaleCrew", initGenderCol, True)
 df.insert(5, "maleCrew", initGenderCol, True)
 
-# print(df.shape)
+print(df.shape)
 # print(df.loc[[0, 10]])
 
 

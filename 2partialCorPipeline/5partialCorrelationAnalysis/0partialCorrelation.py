@@ -43,6 +43,10 @@ for j in x:
             print("------------------------------------------")
             print(j + ", " + k + ", " + i + ":")
             print(str(pg.partial_corr(data=dfAllData, x=j, y=k, covar=Z, method=i).round(3)))
+            print()
+            print("Osnovna korelacija, brez odstranitve katerihkoli vplivov:")
+            print(j + ", " + k + ", " + i + ":")
+            print(str(pg.partial_corr(data=dfAllData, x=j, y=k, covar=None, method=i).round(3)))
             print("------------------------------------------")
             print("\n\n")
 
